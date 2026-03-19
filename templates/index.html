@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CareerAI — Your Path Awaits</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0e0e0e;
+    --ink2: #3a3a3a;
+    --ink3: #7a7a7a;
+    --surface: #faf9f7;
+    --card: #ffffff;
+    --border: #e8e5de;
+    --accent: #1a1a2e;
+    --gold: #c9a84c;
+    --gold-light: #f5e9c8;
+    --teal: #0d7377;
+    --teal-light: #e0f2f2;
+    --coral: #e05c4b;
+    --coral-light: #fcecea;
+    --purple: #5c3d9f;
+    --purple-light: #ede8f8;
+    --green: #2d7a4f;
+    --green-light: #e4f4eb;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HERO HEADER ─────────────────────────────── */
+  header {
+    background: var(--accent);
+    padding: 2rem 2.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.1);
+  }
+  .header-tag {
+    display: inline-block;
+    background: rgba(201,168,76,0.15);
+    color: var(--gold);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin-bottom: 1rem;
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+  }
+  header h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    color: #fff;
+    line-height: 1.1;
+    max-width: 600px;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 1;
+  }
+  header h1 span { color: var(--gold); }
+  header p {
+    color: rgba(255,255,255,0.6);
+    font-size: 1rem;
+    font-weight: 300;
+    max-width: 500px;
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ── LAYOUT ──────────────────────────────────── */
+  main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 4rem;
+  }
+
+  /* ── FORM SECTIONS ───────────────────────────── */
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+  @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .section-label::before {
+    content: '';
+    display: inline-block;
+    width: 16px; height: 2px;
+    background: var(--gold);
+  }
+
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-size: 13px;
+    color: var(--ink2);
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"], select, textarea {
+    width: 100%;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus, textarea:focus {
+    border-color: var(--teal);
+    box-shadow: 0 0 0 3px rgba(13,115,119,0.08);
+  }
+  textarea { resize: vertical; min-height: 90px; line-height: 1.5; }
+  select { cursor: pointer; }
+
+  /* ── SKILL CHIPS ──────────────────────────────── */
+  .chip-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  .chip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 6px 14px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.18s;
+    color: var(--ink2);
+    font-family: 'DM Sans', sans-serif;
+    user-select: none;
+  }
+  .chip:hover { border-color: var(--teal); color: var(--teal); }
+  .chip.active {
+    background: var(--teal-light);
+    border-color: var(--teal);
+    color: var(--teal);
+    font-weight: 500;
+  }
+
+  .add-skill-row {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .add-skill-row input { flex: 1; }
+  .btn-sm {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.18s;
+  }
+  .btn-sm:hover { opacity: 0.8; }
+
+  /* ── CTA BUTTON ───────────────────────────────── */
+  .cta-wrap { text-align: center; margin: 2rem 0; }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    border-radius: 12px;
+    padding: 15px 36px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(14,14,14,0.15); }
+  .cta-btn:active { transform: translateY(0); }
+  .cta-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ── LOADING ──────────────────────────────────── */
+  #loading {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .loader-ring {
+    width: 48px; height: 48px;
+    border: 3px solid var(--border);
+    border-top-color: var(--teal);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1.25rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  #loading p { color: var(--ink3); font-size: 14px; }
+
+  /* ── RESULTS ──────────────────────────────────── */
+  #results { display: none; }
+  #results .results-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  #results .results-header h2 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+  }
+  .badge-new {
+    background: var(--gold-light);
+    color: #8a6a10;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-family: 'Syne', sans-serif;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .paths-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 1.5rem; }
+  .path-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.25rem 1.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .path-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.07); transform: translateY(-2px); }
+  .path-card.top { border-color: var(--gold); }
+  .path-card.top::before {
+    content: 'Best Match';
+    position: absolute;
+    top: 0; right: 0;
+    background: var(--gold);
+    color: #fff;
+    font-size: 10px;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 0 16px 0 10px;
+  }
+  .path-icon { font-size: 28px; margin-bottom: 10px; }
+  .path-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .path-fit {
+    font-size: 12px;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .fit-bar { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .fit-fill { height: 100%; background: var(--teal); border-radius: 2px; transition: width 0.8s ease; }
+  .path-desc { font-size: 13px; color: var(--ink3); line-height: 1.55; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem; }
+  @media (max-width: 640px) { .two-col { grid-template-columns: 1fr; } }
+
+  .result-section { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; }
+  .result-section h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .result-section h3 .dot { width: 8px; height: 8px; border-radius: 50%; }
+
+  .course-item {
+    display: flex;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    align-items: flex-start;
+  }
+  .course-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .course-num {
+    min-width: 24px; height: 24px;
+    border-radius: 6px;
+    background: var(--purple-light);
+    color: var(--purple);
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+  }
+  .course-name { font-size: 13px; font-weight: 500; margin-bottom: 2px; }
+  .course-meta { font-size: 12px; color: var(--ink3); }
+
+  .skill-pill-wrap { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skill-pill {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .skill-pill.must { background: var(--coral-light); border-color: #f0a99f; color: #8a2c1e; }
+  .skill-pill.good { background: var(--green-light); border-color: #8dc4a8; color: var(--green); }
+
+  .roadmap-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 1.5rem; }
+  .roadmap-card h3 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink3);
+    margin-bottom: 1.25rem;
+  }
+  .roadmap-step { display: flex; gap: 16px; position: relative; }
+  .step-line-wrap { display: flex; flex-direction: column; align-items: center; }
+  .step-dot {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    flex-shrink: 0;
+  }
+  .step-connector { width: 2px; flex: 1; min-height: 20px; margin: 4px 0; }
+  .roadmap-step:last-child .step-connector { display: none; }
+  .step-body { padding-bottom: 1.5rem; padding-top: 4px; flex: 1; }
+  .step-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .step-desc { font-size: 13px; color: var(--ink3); line-height: 1.5; }
+
+  .reset-wrap { text-align: center; margin-top: 0.5rem; }
+  .reset-btn {
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 20px;
+    font-size: 13px;
+    cursor: pointer;
+    color: var(--ink3);
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.18s;
+  }
+  .reset-btn:hover { border-color: var(--coral); color: var(--coral); }
+
+  .error-box {
+    background: var(--coral-light);
+    border: 1px solid #f0a99f;
+    color: #8a2c1e;
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    font-size: 14px;
+    margin-top: 1rem;
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-tag">AI-Powered Analysis</div>
+  <h1>Find Your <span>Ideal</span><br>Career Path</h1>
+  <p>Tell us about your skills and interests. Our AI will map personalised career paths, courses, and a learning roadmap just for you.</p>
+</header>
+
+<main>
+  <div id="form-section">
+    <!-- Profile -->
+    <div class="card">
+      <div class="section-label">Your Profile</div>
+      <div class="form-grid">
+        <div>
+          <label for="edu-level">Education Level</label>
+          <select id="edu-level">
+            <option value="">Select level…</option>
+            <option>High School / O-Level</option>
+            <option>A-Level / Diploma</option>
+            <option>Bachelor's Degree (Year 1–2)</option>
+            <option>Bachelor's Degree (Year 3–4)</option>
+            <option>Recent Graduate</option>
+            <option>Postgraduate / Master's</option>
+            <option>Self-Taught / Bootcamp</option>
+          </select>
+        </div>
+        <div>
+          <label for="study-field">Field of Study / Major</label>
+          <input type="text" id="study-field" placeholder="e.g. Computer Science, Business…">
+        </div>
+        <div>
+          <label for="experience">Work / Internship Experience</label>
+          <select id="experience">
+            <option value="">Select…</option>
+            <option>No experience yet</option>
+            <option>Some personal / hobby projects</option>
+            <option>Internship (1–3 months)</option>
+            <option>Part-time work</option>
+            <option>1–2 years full-time</option>
+            <option>3+ years full-time</option>
+          </select>
+        </div>
+        <div>
+          <label for="location">Location / Region</label>
+          <input type="text" id="location" placeholder="e.g. Nairobi, Kenya">
+        </div>
+      </div>
+    </div>
+
+    <!-- Technical Skills -->
+    <div class="card">
+      <div class="section-label">Technical Skills</div>
+      <div class="chip-group" id="tech-chips">
+        <div class="chip" data-skill="Python">Python</div>
+        <div class="chip" data-skill="JavaScript">JavaScript</div>
+        <div class="chip" data-skill="SQL">SQL</div>
+        <div class="chip" data-skill="Excel / Sheets">Excel / Sheets</div>
+        <div class="chip" data-skill="HTML / CSS">HTML / CSS</div>
+        <div class="chip" data-skill="Java">Java</div>
+        <div class="chip" data-skill="React">React</div>
+        <div class="chip" data-skill="Machine Learning">Machine Learning</div>
+        <div class="chip" data-skill="Data Analysis">Data Analysis</div>
+        <div class="chip" data-skill="UI/UX Design">UI/UX Design</div>
+        <div class="chip" data-skill="Cloud (AWS/GCP/Azure)">Cloud</div>
+        <div class="chip" data-skill="Figma">Figma</div>
+        <div class="chip" data-skill="Git / GitHub">Git / GitHub</div>
+        <div class="chip" data-skill="C++">C++</div>
+        <div class="chip" data-skill="Node.js">Node.js</div>
+        <div class="chip" data-skill="Cybersecurity">Cybersecurity</div>
+      </div>
+      <div class="add-skill-row">
+        <input type="text" id="custom-tech-input" placeholder="Add a custom skill…">
+        <button class="btn-sm" onclick="addCustomSkill('tech-chips', 'custom-tech-input')">+ Add</button>
+      </div>
+    </div>
+
+    <!-- Soft Skills -->
+    <div class="card">
+      <div class="section-label">Soft Skills & Strengths</div>
+      <div class="chip-group" id="soft-chips">
+        <div class="chip" data-skill="Communication">Communication</div>
+        <div class="chip" data-skill="Problem Solving">Problem Solving</div>
+        <div class="chip" data-skill="Leadership">Leadership</div>
+        <div class="chip" data-skill="Teamwork">Teamwork</div>
+        <div class="chip" data-skill="Critical Thinking">Critical Thinking</div>
+        <div class="chip" data-skill="Creativity">Creativity</div>
+        <div class="chip" data-skill="Research">Research</div>
+        <div class="chip" data-skill="Attention to Detail">Attention to Detail</div>
+        <div class="chip" data-skill="Public Speaking">Public Speaking</div>
+        <div class="chip" data-skill="Project Management">Project Management</div>
+      </div>
+    </div>
+
+    <!-- Goals -->
+    <div class="card">
+      <div class="section-label">Your Goals & Interests</div>
+      <div class="form-grid" style="margin-bottom:1rem">
+        <div>
+          <label for="work-style">Preferred Work Style</label>
+          <select id="work-style">
+            <option value="">Select…</option>
+            <option>Remote-first</option>
+            <option>Office / In-person</option>
+            <option>Hybrid</option>
+            <option>Freelance / Contract</option>
+            <option>Entrepreneur / Startup</option>
+          </select>
+        </div>
+        <div>
+          <label for="salary-goal">Salary Expectation (USD/yr)</label>
+          <select id="salary-goal">
+            <option value="">Select…</option>
+            <option>Under $20k</option>
+            <option>$20k – $40k</option>
+            <option>$40k – $70k</option>
+            <option>$70k – $100k</option>
+            <option>$100k – $150k</option>
+            <option>$150k+</option>
+          </select>
+        </div>
+      </div>
+      <div>
+        <label for="interests">Describe your interests or anything else to consider</label>
+        <textarea id="interests" placeholder="e.g. I enjoy building products that solve real problems, I'm passionate about healthcare tech…"></textarea>
+      </div>
+    </div>
+
+    <div id="error-box" class="error-box"></div>
+
+    <div class="cta-wrap">
+      <button class="cta-btn" id="analyze-btn" onclick="analyzeCareer()">
+        ✦ &nbsp;Analyse My Career Path
+      </button>
+    </div>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div class="loader-ring"></div>
+    <p id="loading-msg">Analysing your skills and goals…</p>
+  </div>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="results-header">
+      <h2>Your Career Analysis</h2>
+      <span class="badge-new">AI Generated</span>
+    </div>
+
+    <div class="section-label">Recommended Career Paths</div>
+    <div class="paths-grid" id="paths-container"></div>
+
+    <div class="two-col">
+      <div class="result-section">
+        <h3><span class="dot" style="background:var(--purple)"></span>Courses to Take</h3>
+        <div id="courses-list"></div>
+      </div>
+      <div class="result-section">
+        <h3><span class="dot" style="background:var(--coral)"></span>Skills to Develop</h3>
+        <div class="skill-pill-wrap" id="skills-list"></div>
+      </div>
+    </div>
+
+    <div class="roadmap-card">
+      <h3>⬡ &nbsp;Your 12-Month Roadmap</h3>
+      <div class="roadmap-steps" id="roadmap-steps"></div>
+    </div>
+
+    <div class="reset-wrap">
+      <button class="reset-btn" onclick="resetForm()">← Start Over</button>
+    </div>
+  </div>
+</main>
+
+<script>
+// Chip toggle
+document.querySelectorAll('.chip').forEach(chip => {
+  chip.addEventListener('click', () => chip.classList.toggle('active'));
+});
+
+function addCustomSkill(containerId, inputId) {
+  const input = document.getElementById(inputId);
+  const val = input.value.trim();
+  if (!val) return;
+  const container = document.getElementById(containerId);
+  const chip = document.createElement('div');
+  chip.className = 'chip active';
+  chip.dataset.skill = val;
+  chip.textContent = val;
+  chip.addEventListener('click', () => chip.classList.toggle('active'));
+  container.appendChild(chip);
+  input.value = '';
+}
+document.getElementById('custom-tech-input').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addCustomSkill('tech-chips', 'custom-tech-input');
+});
+
+function getSelectedSkills(id) {
+  return [...document.querySelectorAll(`#${id} .chip.active`)].map(c => c.dataset.skill);
+}
+
+// Loading cycling messages
+const loadingMsgs = [
+  'Analysing your skills and goals…',
+  'Mapping career pathways…',
+  'Curating courses and resources…',
+  'Building your personal roadmap…',
+  'Almost there — polishing results…'
+];
+let loadIdx = 0, loadTimer;
+function cycleLoading() {
+  document.getElementById('loading-msg').textContent = loadingMsgs[loadIdx % loadingMsgs.length];
+  loadIdx++;
+  loadTimer = setTimeout(cycleLoading, 2200);
+}
+
+async function analyzeCareer() {
+  const btn = document.getElementById('analyze-btn');
+  const errBox = document.getElementById('error-box');
+  errBox.style.display = 'none';
+
+  const techSkills = getSelectedSkills('tech-chips');
+  const softSkills = getSelectedSkills('soft-chips');
+  if (!techSkills.length && !softSkills.length) {
+    errBox.textContent = '⚠ Please select at least a few skills before analysing.';
+    errBox.style.display = 'block';
+    return;
+  }
+
+  const profile = {
+    educationLevel: document.getElementById('edu-level').value,
+    fieldOfStudy:   document.getElementById('study-field').value,
+    experience:     document.getElementById('experience').value,
+    location:       document.getElementById('location').value,
+    workStyle:      document.getElementById('work-style').value,
+    salaryGoal:     document.getElementById('salary-goal').value,
+    interests:      document.getElementById('interests').value,
+    techSkills,
+    softSkills,
+  };
+
+  btn.disabled = true;
+  document.getElementById('form-section').style.display = 'none';
+  document.getElementById('loading').style.display = 'block';
+  loadIdx = 0;
+  cycleLoading();
+
+  try {
+    // ↓ calls Flask backend — API key stays secure on the server
+    const res = await fetch('/api/analyse', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(profile),
+    });
+
+    const data = await res.json();
+    if (!res.ok) throw new Error(data.error || 'Server error');
+    renderResults(data);
+
+  } catch (err) {
+    clearTimeout(loadTimer);
+    document.getElementById('loading').style.display = 'none';
+    document.getElementById('form-section').style.display = 'block';
+    errBox.textContent = '⚠ ' + err.message;
+    errBox.style.display = 'block';
+    btn.disabled = false;
+  }
+}
+
+function renderResults(data) {
+  clearTimeout(loadTimer);
+  document.getElementById('loading').style.display = 'none';
+
+  // Paths
+  const pathsEl = document.getElementById('paths-container');
+  pathsEl.innerHTML = '';
+  (data.paths || []).forEach(p => {
+    const pct = Math.round(Math.min(100, Math.max(0, p.fitPercent || 75)));
+    const card = document.createElement('div');
+    card.className = 'path-card' + (p.isTop ? ' top' : '');
+    card.innerHTML = `
+      <div class="path-icon">${p.icon || '💼'}</div>
+      <div class="path-title">${esc(p.title)}</div>
+      <div class="path-fit">
+        <span>${pct}% match</span>
+        <div class="fit-bar"><div class="fit-fill" style="width:0%" data-target="${pct}"></div></div>
+      </div>
+      <div class="path-desc">${esc(p.description)}</div>
+    `;
+    pathsEl.appendChild(card);
+  });
+
+  // Courses
+  const coursesEl = document.getElementById('courses-list');
+  coursesEl.innerHTML = '';
+  (data.courses || []).forEach((c, i) => {
+    const item = document.createElement('div');
+    item.className = 'course-item';
+    item.innerHTML = `
+      <div class="course-num">${i + 1}</div>
+      <div>
+        <div class="course-name">${esc(c.name)}</div>
+        <div class="course-meta">${esc(c.platform)}${c.duration ? ' · ' + esc(c.duration) : ''}</div>
+      </div>
+    `;
+    coursesEl.appendChild(item);
+  });
+
+  // Skills
+  const skillsEl = document.getElementById('skills-list');
+  skillsEl.innerHTML = '';
+  (data.skillsToLearn || []).forEach(s => {
+    const pill = document.createElement('span');
+    pill.className = 'skill-pill ' + (s.priority === 'must' ? 'must' : 'good');
+    pill.textContent = s.skill;
+    skillsEl.appendChild(pill);
+  });
+
+  // Roadmap
+  const roadmapEl = document.getElementById('roadmap-steps');
+  roadmapEl.innerHTML = '';
+  const colors   = ['var(--teal)', 'var(--purple)', 'var(--gold)', 'var(--coral)'];
+  const bgColors = ['var(--teal-light)', 'var(--purple-light)', 'var(--gold-light)', 'var(--coral-light)'];
+  (data.roadmap || []).forEach((step, i) => {
+    const el = document.createElement('div');
+    el.className = 'roadmap-step';
+    el.innerHTML = `
+      <div class="step-line-wrap">
+        <div class="step-dot" style="background:${bgColors[i%4]};color:${colors[i%4]};border:2px solid ${colors[i%4]}">${i+1}</div>
+        <div class="step-connector" style="background:${colors[i%4]};opacity:0.2"></div>
+      </div>
+      <div class="step-body">
+        <div class="step-title" style="color:${colors[i%4]}">${esc(step.phase)} — ${esc(step.title)}</div>
+        <div class="step-desc">${esc(step.description)}</div>
+      </div>
+    `;
+    roadmapEl.appendChild(el);
+  });
+
+  document.getElementById('results').style.display = 'block';
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      document.querySelectorAll('.fit-fill').forEach(b => { b.style.width = b.dataset.target + '%'; });
+    }, 150);
+  });
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function esc(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function resetForm() {
+  document.getElementById('results').style.display = 'none';
+  document.getElementById('form-section').style.display = 'block';
+  document.getElementById('analyze-btn').disabled = false;
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  ['edu-level','study-field','experience','location','work-style','salary-goal','interests']
+    .forEach(id => { document.getElementById(id).value = ''; });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
+</body>
+</html>
